@@ -24,6 +24,7 @@
 <body>
    <%
    DtUsuario use= (DtUsuario)session.getAttribute("usuario");
+
    
    if(use==null){
 	    RequestDispatcher rd;
@@ -61,11 +62,14 @@
 			<li class="nav-item"><a class="nav-link" href="Outsesion.jsp">Cerrar Sesion</a></li>
         </ul>
         <ul>
-              
-            	<img class="avatar"src="imagenes/user.png"/>
-            
-           
-            <h1 class="nav-item"> el nombre...</hi>   
+			 <%if(use.getUrl()==null || use.getUrl()=="") {%>               
+				<img class="avatar"src="imagenes/user.png"/>            
+            <%}else{%>
+            	 <img class="avatar" src="<%=use.getUrl()%>"/>
+             <%}
+            	request.setAttribute("name", use.getNombre());
+			%> 
+            <h1 class="nav-item">${name}</h1> 
         </ul>
 
 	</div>

@@ -49,34 +49,40 @@ public class IniciarSesion extends HttpServlet {
     	String nickname = request.getParameter("nameUser");
         String password = request.getParameter("passwardUser");
         
-       
-        
         System.out.println("Nombre "+nickname+" Passward "+ password);
         DtUsuario user = null;
 		try {
 			user = login(nickname, password);
-			 HttpSession sesion = request.getSession();
-		        if(user != null) {
-		        	sesion.setAttribute("usuario", user);
-		        	RequestDispatcher rd;
-		        	 System.out.println("Nickname->"+user.toString()); // Muestra null - no trae data
-		            request.setAttribute("inicio", "OK");
-		            request.setAttribute("login", "OK"); 
-		        	rd = request.getRequestDispatcher("/home.jsp");
-		            rd.forward(request, response);
-		        }else {
-		            RequestDispatcher rd;
-		            request.setAttribute("login", "Error");
-		        	rd = request.getRequestDispatcher("/inicioSesion.jsp");
-		            rd.forward(request, response);
-		        }
-		        
-				doGet(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-       
+        HttpSession sesion = request.getSession();
+        if(user != null) {
+        	
+        	/*if (user.getUrl() == null) {
+        		sesion.setAttribute("urlImg","noImg");
+				System.out.println("imagen cargada con noImg");
+			}else {
+				sesion.setAttribute("urlImg",user.getUrl());
+			}*/
+        	sesion.setAttribute("usuario", user);
+        	RequestDispatcher rd;
+        	
+        	
+            request.setAttribute("inicio", "OK");
+            request.setAttribute("login", "OK");
+            
+        	rd = request.getRequestDispatcher("/home.jsp");
+            rd.forward(request, response);
+        }else {
+            RequestDispatcher rd;
+            request.setAttribute("login", "Error");
+        	rd = request.getRequestDispatcher("/inicioSesion.jsp");
+            rd.forward(request, response);
+        }
+        
+		doGet(request, response);
        
     }
        
