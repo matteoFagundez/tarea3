@@ -1,4 +1,8 @@
  <%@page import="publicadores.DtUsuario"%>
+ <%@page import="publicadores.DtProfesor"%>
+ <%@page import="publicadores.DtSocio"%>
+ <%@page import="publicadores.DtClase"%> 
+ <%@page import="publicadores.DtActDeportiva"%> 
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
  <%@page import="java.io.ByteArrayInputStream"%>
  <%@page import="java.io.IOException"%>
@@ -23,7 +27,7 @@
 </head>
 <body>
    <%
-   DtUsuario use= (DtUsuario)session.getAttribute("usuario");
+   publicadores.DtUsuario use= (publicadores.DtUsuario)session.getAttribute("usuario");
 
    
    if(use==null){

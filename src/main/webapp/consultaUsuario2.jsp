@@ -6,7 +6,6 @@
  <%@page import="java.io.InputStream"%>
  <%@page import= "java.awt.Image" %>
  <%@page import= "javax.imageio.ImageIO" %>
-
  <%@page import="java.util.ArrayList"%>
 	<%@page import="java.util.List"%>
 
@@ -45,42 +44,76 @@
 	  
 			<div align="center" class="div-dataUser" style="background-color:#33475b">
   				<h2 class="font-weight-bold mb-3"> Datos </h2>
-				<img class="avatar" src="imagenes/user.png" style="width:150px;height:180px;margin-left:16px;">
+								<img class="avatar" src=<%if(use.getUrl()==null || use.getUrl()=="") {%>            
+										            		"imagenes\user.png"  
+											            <%}else{%>
+											            	"<%=use.getUrl()%>"	
+											            <%}%>" style="width:150px;height:180px;margin-left:16px;">
 				
 				<br></br>
+				
+					<%if(use instanceof publicadores.DtProfesor){
+						publicadores.DtProfesor p = (publicadores.DtProfesor)use;%>
 				<div class="div-user" id="wrapper">
-			          <table>
-			            <thead>		
-			              <tr>
-			                <th>Nickname</th>
-			                <th>Nombre</th>
-			                <th>Apellido</th>
-			                <th>Fecha nacimiento</th>
-			                <th>Email</th>
-			                <th>Descripcion</th>
-			                <th>Bibiografia</th>
-			                <th>Sitio Web</th>
-			                <th>Rol</th>
-			              </tr>
-			            </thead>
-			            <tbody>
-			             <tr>
-			                <td data-label="Nickname">Bob</td>
-			                <td data-label="Nombre">Smith</td>
-			                <td data-label="Apellido">Northeastern University</td>
-			                <td data-label="Nacimiento">Computer Science</td>
-			                <td data-label="Email">@gmail</td>
-			                <td data-label="Descripcion">descripcion del profe</td>
-			                <td data-label="Biografia">bio del profe</td>
-			                <td data-label="Sitio Web">google.com</td>
-			                <td data-label="Rol">Profesor</td>
-			              </tr>
-	
-			            </tbody>
-			          </table>
-		          </div>
-		          <div class="div-clases" id="wrapper">
-			          <br></br>
+		          <table>
+		            <thead>		
+		              <tr>
+		                <th>Nickname</th>
+		                <th>Nombre</th>
+		                <th>Apellido</th>
+		                <th>Fecha nacimiento</th>
+		                <th>Email</th>
+		                <th>Descripcion</th>
+		                <th>Bibiografia</th>
+		                <th>Sitio Web</th>
+		                <th>Rol</th>
+		              </tr>
+		            </thead>
+		            <tbody>
+		             <tr>
+		                <td data-label="Nickname"><%=p.getNickname()%></td>
+		                <td data-label="Nombre"><%=p.getNombre()%></td>
+		                <td data-label="Apellido"> <%=p.getApellido()%></td>
+		                <td data-label="Nacimiento">error</td>
+		                <td data-label="Email"><%=p.getEmail()%></td>
+		                <td data-label="Descripcion"><%=p.getDescripcion()%></td>
+		                <td data-label="Biografia"><%=p.getBiografia()%></td>
+		                <td data-label="Sitio Web"><%=p.getSitioWeb()%></td>
+		                <td data-label="Rol">Profesor</td>
+		              </tr>
+
+		            </tbody>
+		          </table>
+		        </div>     <%}else{publicadores.DtSocio s= (publicadores.DtSocio)use;%> 
+					<!-- TABLA PARA EL USUARIO TIPO SOCIO -->  
+				<div id="wrapper">
+		          <table>
+		            <thead>		
+		              <tr>
+		                <th>Nickname</th>
+		                <th>Nombre</th>
+		                <th>Apellido</th>
+		                <th>Fecha nacimiento</th>
+		                <th>Email</th>
+
+		                <th>Rol</th>
+		              </tr>
+		            </thead>
+		            <tbody>
+		             <tr>
+		                <td data-label="Nickname"><%=s.getNickname()%></td>
+		                <td data-label="Nombre"><%=s.getNombre()%></td>
+		                <td data-label="Apellido"> <%=s.getApellido()%></td>
+		                <td data-label="Nacimiento">error</td>
+		                <td data-label="Email"><%=s.getEmail()%></td>
+		                <td data-label="Rol">Socio</td>
+		              </tr>
+
+		            </tbody>
+		          </table>
+
+		        </div>   
+			<br></br><%} %>
 			          <h2 class="font-weight-bold mb-3"> Clases Asociadas</h3>
 				          <table>
 				            <thead>		
@@ -93,14 +126,28 @@
 				              </tr>
 				            </thead>
 				            <tbody>
+				            
+				            
+				            <%ArrayList<publicadores.DtClase> clase = (ArrayList<publicadores.DtClase>) request.getAttribute("clase"); 
+								if (clase != null) {
+									for (publicadores.DtClase c : clase) {
+							%>
 				             <tr>
-				                <td data-label="Clase">Clase 1</td>
-				                <td data-label="Fecha">12/45/66</td>
-				                <td data-label="Inicio">8:00</td>
-				                <td data-label="URL">google.com</td>
-				                <td data-label="Registro">34/55/5 9:0</td>
+				                <td data-label="Clase"><%=c.getNombre()%></td>
+				                <td data-label="Fecha">00/00/00</td>  <!-- traer fecha-->
+				                <td data-label="Inicio">000</td> <!-- traer minutos-->
+				                <td data-label="URL"><%=c.getUrl()%></td>
+				                <td data-label="Registro">34/55/5 9:0</td> <!-- traer fecha y hora-->
 				              </tr>
-		
+									<%}%>
+								<%}else{%>
+									<tr>
+										<th><li>vacio</li></th>
+										<td><li>vacio</li></td>
+										<td><li>vacio</li></td>
+										<td><li>vacio</li></td>
+										<td><li>vacio</li></td>
+									</tr><%}%>
 				            </tbody>
 				          </table>
 
@@ -112,8 +159,13 @@
 							<label class="input-group-text" for="inputGroupSelect01">Clase</label>
 								</div>
 								<select class="custom-select" id="selectclase" name="selectclase" required>
-									<option value="select">Seleccione Clase</option>
-									<option value=""></option>
+										<%
+										if(clase != null){%>
+										<option value="select">Seleccione Clase</option>
+										<%
+										for(publicadores.DtClase ca : clase){%>
+											<option value="<%=ca.getNombre()%>"><%=ca.getNombre()%></option>
+										<%}}%>
 								</select>
 								<input type="submit" value="Enviar" name="enviar">
 							</div>		
@@ -121,6 +173,8 @@
 		           	
 		           	<div class="div-actividades" id="wrapper">
 			          <br></br>
+			          <%if(use instanceof publicadores.DtProfesor){
+						ArrayList<publicadores.DtActDeportiva> actDepo = (ArrayList<publicadores.DtActDeportiva>) request.getAttribute("actD");%> 
 			          <h2 class="font-weight-bold mb-3"> Actividades deportivas Asociadas</h3>
 				          <table>
 				            <thead>		
@@ -133,16 +187,33 @@
 				              </tr>
 				            </thead>
 				            <tbody>
+				            <%if (actDepo != null) {
+								for (publicadores.DtActDeportiva dta : actDepo) {%>
 				             <tr>
-				                <td data-label="Nombre">Clase 1</td>
-				                <td data-label="Descripcion">descripcionde la act</td>
-				                <td data-label="Duracion">8 hs</td>
-				                <td data-label="Costo">30</td>
-				                <td data-label="Registro">34/55/5 9:0</td>
+				                <td data-label="Nombre"><%=dta.getNombre()%></td>
+				                <td data-label="Descripcion"><%=dta.getDescripcion()%></td>
+				                <td data-label="Duracion"><%=String.valueOf(dta.getDuracion()+" min")%></td>
+				                <td data-label="Costo"><%=String.valueOf(dta.getCosto()+"$")%></td>
+				              	<td data-label="Registro">34/55/5 9:0</td> <!-- traer fecha y hora-->
 				              </tr>
-		
+						     <%		}
+								}	
+				            		else{ 
+												%>
+											<tr>
+												<th><li>vacio</li></th>
+												<td><li>vacio</li></td>
+												<td><li>vacio</li></td>
+												<td><li>vacio</li></td>
+												<td><li>vacio</li></td>
+											
+											</tr>
+											<%
+											}
+											%>
 				            </tbody>
 				          </table>
+
 		          </div>
 				  <br></br>
 		          <form action="MostrarDCoAs" method="post">
@@ -151,12 +222,20 @@
 							<label class="input-group-text" for="inputGroupSelect01">Actividades</label>
 								</div>
 								<select class="custom-select" id="selectclase" name="selectclase" required>
-									<option value="select">Seleccione Actividad</option>
-									<option value=""></option>
+											<%if(actDepo != null){%>
+												<option value="select">Seleccione Actividad</option>
+												<%for(publicadores.DtActDeportiva ca : actDepo){%>
+												<option value="<%=ca.getNombre()%>"><%=ca.getNombre()%></option>
+											<%}}%>
 								</select>
 								<input type="submit" value="Enviar" name="enviar">
 							</div>		
-					</form>
+					</form> <%} %>
+					 <%if(request.getAttribute("Datos")=="OK"){  %>
+	                <script>  
+	                	validacion();   
+	                </script>
+               	  <%} %>
 		           <br></br>
 		        </div>     
 			</div>

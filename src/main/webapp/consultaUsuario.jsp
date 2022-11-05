@@ -6,7 +6,7 @@
  <%@page import="java.io.InputStream"%>
  <%@page import= "java.awt.Image" %>
  <%@page import= "javax.imageio.ImageIO" %>
-
+<%@page import = "java.util.Date" %>
  <%@page import="java.util.ArrayList"%>
 	<%@page import="java.util.List"%>
 
@@ -45,9 +45,15 @@
 	  
 			<div align="center" class="div-dataUser" style="background-color:#33475b">
   				<h2 class="font-weight-bold mb-3">  Datos </h2>
-				<img class="avatar" src="imagenes/user.png" style="width:150px;height:180px;margin-left:16px;">
+				<img class="avatar" src=<%if(use.getUrl()==null || use.getUrl()=="") {%>            
+										            		"imagenes\user.png"  
+											            <%}else{%>
+											            	"<%=use.getUrl()%>"	
+											            <%}%>" style="width:150px;height:180px;margin-left:16px;">
 				
 				<br></br>
+					<%if(use instanceof publicadores.DtProfesor){
+							publicadores.DtProfesor p = (publicadores.DtProfesor)use;%>
 				<div class="div-user" id="wrapper">
 		          <table>
 		            <thead>		
@@ -65,21 +71,21 @@
 		            </thead>
 		            <tbody>
 		             <tr>
-		                <td data-label="Nickname">Bob</td>
-		                <td data-label="Nombre">Smith</td>
-		                <td data-label="Apellido">Northeastern University</td>
-		                <td data-label="Nacimiento">Computer Science</td>
-		                <td data-label="Email">@gmail</td>
-		                <td data-label="Descripcion">descripcion del profe</td>
-		                <td data-label="Biografia">bio del profe</td>
-		                <td data-label="Sitio Web">google.com</td>
+		                <td data-label="Nickname"><%=p.getNickname()%></td>
+		                <td data-label="Nombre"><%=p.getNombre()%></td>
+		                <td data-label="Apellido"> <%=p.getApellido()%></td>
+		                <td data-label="Nacimiento">error</td>
+		                <td data-label="Email"><%=p.getEmail()%></td>
+		                <td data-label="Descripcion"><%=p.getDescripcion()%></td>
+		                <td data-label="Biografia"><%=p.getBiografia()%></td>
+		                <td data-label="Sitio Web"><%=p.getSitioWeb()%></td>
 		                <td data-label="Rol">Profesor</td>
 		              </tr>
 
 		            </tbody>
 		          </table>
-		        </div>     
-					<!-- TABLA PARA EL USUARIO TIPO SOCIO
+		        </div>     <%}else{publicadores.DtSocio s= (publicadores.DtSocio)use;%> 
+					<!-- TABLA PARA EL USUARIO TIPO SOCIO -->  
 				<div id="wrapper">
 		          <table>
 		            <thead>		
@@ -95,32 +101,31 @@
 		            </thead>
 		            <tbody>
 		             <tr>
-		                <td data-label="Nickname">Bob</td>
-		                <td data-label="Nombre">Smith</td>
-		                <td data-label="Apellido">Northeastern University</td>
-		                <td data-label="Nacimiento">Computer Science</td>
-		                <td data-label="Email">@gmail</td>
+		                <td data-label="Nickname"><%=s.getNickname()%></td>
+		                <td data-label="Nombre"><%=s.getNombre()%></td>
+		                <td data-label="Apellido"> <%=s.getApellido()%></td>
+		                <td data-label="Nacimiento">error</td>
+		                <td data-label="Email"><%=s.getEmail()%></td>
 		                <td data-label="Rol">Socio</td>
 		              </tr>
 
 		            </tbody>
 		          </table>
 
-		        </div>  -->  
+		        </div>   <%} %>
 			<br></br>
-				<!-- Opcion para PROFESOR --> 
-	            	<form action="ConsultaListadoUsuario" method="post">
-				            <button class="btn btn-primary width-100">Ver Actividades y Clases</button>
-					</form>
-				<!-- Opcion para SOCIO 
-					<form action="ConsultaListadoUsuario" method="post">
-				            <button class="btn btn-primary width-100">Ver  Clases</button>
-					</form>--> 
+			 <%if(use instanceof publicadores.DtProfesor){%>
+            	<form action="ConsultaListadoUsuario" method="post">
+			            <button class="btn btn-primary width-100">Ver Actividades y Clases</button>
+				</form>
+                <%} else{%>
+                <form action="ConsultaListadoUsuario" method="post">    
+			          <button class="btn btn-primary width-100">Ver  Actividades</button>		        
+				</form>
+                <%} %>
+			
 			<br></br>
 			</div>
-			
-
-
 	</div>
 	
 	

@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import publicadores.ControladorPublish;
 import publicadores.ControladorPublishService;
 import publicadores.ControladorPublishServiceLocator;
+import publicadores.DtInstitucionD;
 import publicadores.DtUsuario;
 
 
@@ -50,7 +51,7 @@ public class IniciarSesion extends HttpServlet {
         String password = request.getParameter("passwardUser");
         
         System.out.println("Nombre "+nickname+" Passward "+ password);
-        DtUsuario user = null;
+        publicadores.DtUsuario user = null;
 		try {
 			user = login(nickname, password);
 		} catch (Exception e) {
@@ -59,20 +60,23 @@ public class IniciarSesion extends HttpServlet {
 		}
         HttpSession sesion = request.getSession();
         if(user != null) {
-        	
-        	/*if (user.getUrl() == null) {
-        		sesion.setAttribute("urlImg","noImg");
-				System.out.println("imagen cargada con noImg");
-			}else {
-				sesion.setAttribute("urlImg",user.getUrl());
-			}*/
+
         	sesion.setAttribute("usuario", user);
         	RequestDispatcher rd;
         	
         	
             request.setAttribute("inicio", "OK");
             request.setAttribute("login", "OK");
-            
+         List<publicadores.DtInstitucionD>  inst = null;
+            try {
+				inst= listadoDtIntiDtInstitucion();
+				
+				sesion.setAttribute("LIntitucines",inst);
+				System.out.println("Guarde las inst"+inst.toString());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
         	rd = request.getRequestDispatcher("/home.jsp");
             rd.forward(request, response);
         }else {
@@ -91,11 +95,11 @@ public class IniciarSesion extends HttpServlet {
 
     
 	//OPERACIÓN CONSUMIDA
-  	public ArrayList<DtUsuario> listarDtUsuario() throws Exception {
+  	public ArrayList<publicadores.DtUsuario> listarDtUsuario() throws Exception {
   		ControladorPublishService cps = new ControladorPublishServiceLocator();
   		ControladorPublish port = cps.getControladorPublishPort();
-  		DtUsuario[] usuarios = port.listarDtUsuario() ;
-  		ArrayList<DtUsuario> lstUsuarios  = new ArrayList<>();
+  		publicadores.DtUsuario[] usuarios = port.listarDtUsuario() ;
+  		ArrayList<publicadores.DtUsuario> lstUsuarios  = new ArrayList<>();
   		for (int i = 0; i < usuarios .length; ++i) {
   		    lstUsuarios .add(usuarios [i]);
   		}
@@ -110,6 +114,16 @@ public class IniciarSesion extends HttpServlet {
 		return port.login(nick, password);
 	}  
 
+  	public ArrayList<publicadores.DtInstitucionD> listadoDtIntiDtInstitucion() throws Exception {
+  		ControladorPublishService cps = new ControladorPublishServiceLocator();
+  		ControladorPublish port = cps.getControladorPublishPort();
+  		publicadores.DtInstitucionD[] dtInstitutos = port.listadoDtIntiDtInstitucion() ;
+  		ArrayList<publicadores.DtInstitucionD> lstDtIns  = new ArrayList<>();
+  		for (int i = 0; i < dtInstitutos .length; ++i) {
+  			lstDtIns .add(dtInstitutos [i]);
+  		}
+  		return lstDtIns;
+  	}
 
 	
 }
