@@ -24,7 +24,7 @@
 <body>
 
 
-		<%@ include file="menu.jsp"  %>
+		<%@ include file="menu.jsp" %>
 	
 
 	<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
