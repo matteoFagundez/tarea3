@@ -93,6 +93,7 @@
 			<li class="nav-item"><a class="nav-link" href="modificarUsuario.jsp">Modificar Datos</a></li>
 		
         	<li class="nav-item"><a class="nav-link" href="Outsesion.jsp">Cerrar Sesion</a></li>
+        	<li class="nav-item"><a class="nav-link" href="div-responsive.jsp">Div-Responsive</a></li>
         </ul>
         <ul>
          <%if(use.getUrl()==null || use.getUrl()=="") {%>            

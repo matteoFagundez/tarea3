@@ -32,10 +32,10 @@
         
         
        
-        <title> Modificar datos</title>
+        <title> TITULO</title>
        
 		 <link rel="stylesheet" href="css/styleMenu.css"> 	<!-- css para la barra de MENU-->		
-        <link rel="stylesheet" href="css/modificarUsuario.css">
+         <link rel="stylesheet" href="css/styleResponsive.css"> <!-- css para CUERPO CENTRAL RESPONISVE-->
 	 <%@ include file="menu.jsp" %>
     </head>
     <body>
@@ -60,51 +60,7 @@
    
      <div class="div-form"> <!-- Contenedor responsive -> ver codigo css en css/mosficarUsuario.css -->
 	    <div align="center" class="div-dataUser" style="background-color:#33475b"> <!-- Segundo contenedor responsive -> ver codigo css en css/mosficarUsuario.css -->
-		    <form action="ModificarUsuario" method="post">
-		       <div class="card">
-				  
-		          <input type="hidden" name="boton" id="boton" value="">
-									<div class="inputBox">
-									<!-- LA DATA: Formulario cargado con los datos provenientes del dtUsuario -->
-										<label class="font-weight-bold">NickName <span class="text-danger"></span></label>
-		                                 <% request.setAttribute("nick", use.getNickname()); %>
-		                                <input type="text" name="nick" class="form-control" value="${nick}" readonly>
-	           
-										<label class="font-weight-bold">Nombre <span class="text-danger"></span></label>
-										 <% request.setAttribute("nombre", use.getNombre()); %>
-		                                <input type="text" name="nombre" class="form-control" value="${nombre}" required>
-		                                
-		                                <label class="font-weight-bold">Apellido <span class="text-danger"></span></label>
-		                                <% request.setAttribute("apellido", use.getApellido()); %>
-		                                <input type="text" name="apellido" class="form-control"  value="${apellido}" required>
-		                                
-		                                <label class="font-weight-bold">Fecha <span class="text-danger"></span></label>
-	  									<% request.setAttribute("fecha", use.getFechaNac()); %>
-		                            	<input type="date" id="tipofecha" name="fecha" class="form-control"  value="${fecha}"  required>
-		                            	
-		                            	
-		                            	<label class="font-weight-bold">Email<span class="text-danger"></span></label>
-		                                 <% request.setAttribute("email", use.getEmail()); %>
-		                                <input type="text" name="email" class="form-control" value="${email}" readonly>
-		                                
-		                                <label class="font-weight-bold">Contraseña <span class="text-danger"></span></label>
-										 <% request.setAttribute("password", use.getPassward()); %>
-		                                <input type="text" name="password" class="form-control" value="${password}" required>
-		                              
-		                              	<label class="font-weight-bold" >Foto <span class="text-danger"></span></label>
-		                              	 <% request.setAttribute("oldUrl", use.getUrl()); %>
-		                              	 <input type="text" name="oldUrl" class="form-control" value="${oldUrl}" readonly>
-		                              	  
-		                              	  <% request.setAttribute("Url", use.getUrl()); %>
-		                              	 <input type="file" name="Url" class="form-control" value="${Url}" >
-	
-		                            </div>
-		       <div>
-		       		<button name="btnAceptar" type="submit">Aceptar</button>
-		      </div> 
-		      </div>
-		     
-		    </form>
+		    
 		</div> <!-- cierrre de div-dataUser -->
     </div> <!-- cierrre de div-form -->
     
