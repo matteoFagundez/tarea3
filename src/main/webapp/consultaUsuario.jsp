@@ -77,7 +77,7 @@
 		                <td data-label="Nickname"><%=p.getNickname()%></td>
 		                <td data-label="Nombre"><%=p.getNombre()%></td>
 		                <td data-label="Apellido"> <%=p.getApellido()%></td>
-		                <td data-label="Nacimiento">error</td>
+		                <td data-label="Nacimiento"><%=p.getFechaNac().getTime()%></td>
 		                <td data-label="Email"><%=p.getEmail()%></td>
 		                <td data-label="Descripcion"><%=p.getDescripcion()%></td>
 		                <td data-label="Biografia"><%=p.getBiografia()%></td>
