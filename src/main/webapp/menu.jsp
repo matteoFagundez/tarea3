@@ -70,8 +70,9 @@
      		</li>				
 			<li class="nav-item"><a class="nav-link" data-toggle="dropdown" href="#">Ranking</a>
 	    	    <ul class="dropdown-menu">
-					<li class="nav-item"><a class="nav-link" href="rankingClases.jsp">Ranking dictado clase</a></li>
-					<li class="nav-item"><a class="nav-link" href="rankingActDeportiva.jsp">Ranking actividades deportivas</a></li>
+					<li class="nav-item"><a class="nav-link" href="rankingClase.jsp">Ranking Clases</a></li>
+					
+					<li class="nav-item"><a class="nav-link" href="rankingActividadD.jsp">Ranking Actividades</a></li>
 				</ul>
      		</li>
 			<%}%>
@@ -109,6 +110,15 @@
 	</div>
 	</nav>
 
+	<!-- Script para ver ranking -->
+	<script type="text/javascript">
+		function procesar(tipo1) {
+			document.getElementById("boton1").value = tipo1;
+			document.forms[0].submit();
+			}
+	</script>
+
+	
     	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
