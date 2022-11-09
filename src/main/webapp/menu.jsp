@@ -64,7 +64,7 @@
 			<%if(use instanceof DtProfesor){//menus de profe %>
 			<li class="nav-item"><a class="nav-link" data-toggle="dropdown" href="#">Clases</a>
 		        <ul class="dropdown-menu">
-					<li class="nav-item"><a class="nav-link" href="Working.jsp">Alta dictado clase</a></li>
+					<li class="nav-item"><a class="nav-link" href="altaClase.jsp">Alta dictado clase</a></li>
 					<li class="nav-item"><a class="nav-link" href="Working.jsp">Consulta dictado clase</a></li>
 				</ul>
      		</li>				
