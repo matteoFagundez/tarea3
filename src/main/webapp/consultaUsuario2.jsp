@@ -74,7 +74,7 @@
 		                <td data-label="Nickname"><%=p.getNickname()%></td>
 		                <td data-label="Nombre"><%=p.getNombre()%></td>
 		                <td data-label="Apellido"> <%=p.getApellido()%></td>
-		                <td data-label="Nacimiento">error</td>
+		                <td data-label="Nacimiento"><%=p.getFechaNac().getTime()%></td>
 		                <td data-label="Email"><%=p.getEmail()%></td>
 		                <td data-label="Descripcion"><%=p.getDescripcion()%></td>
 		                <td data-label="Biografia"><%=p.getBiografia()%></td>
@@ -104,7 +104,7 @@
 		                <td data-label="Nickname"><%=s.getNickname()%></td>
 		                <td data-label="Nombre"><%=s.getNombre()%></td>
 		                <td data-label="Apellido"> <%=s.getApellido()%></td>
-		                <td data-label="Nacimiento">error</td>
+		                <td data-label="Nacimiento"><%=s.getFechaNac().getTime()%></td>
 		                <td data-label="Email"><%=s.getEmail()%></td>
 		                <td data-label="Rol">Socio</td>
 		              </tr>
@@ -137,7 +137,7 @@
 				                <td data-label="Fecha">00/00/00</td>  <!-- traer fecha-->
 				                <td data-label="Inicio">000</td> <!-- traer minutos-->
 				                <td data-label="URL"><%=c.getUrl()%></td>
-				                <td data-label="Registro">34/55/5 9:0</td> <!-- traer fecha y hora-->
+				                <td data-label="Registro">ver tema hora</td> <!-- traer fecha y hora-->
 				              </tr>
 									<%}%>
 								<%}else{%>
