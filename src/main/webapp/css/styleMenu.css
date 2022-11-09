@@ -4,12 +4,10 @@
 }
 
 .container {
-    width: 100vw;
-    height: 100vh;
+
     background-image: linear-gradient(rgba(5, 10, 5, 0.80), rgba(90, 40, 90, 0.80)), url(./bg-image.jpg);
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+
 }
 .navbar {
     width: 95%;
@@ -52,7 +50,7 @@
     content: "";
     height: 3px;
     width: 0%;
-    background: yellowgreen;
+    background: rgb(0, 0, 160);
     position: absolute;
     left: 0;
     bottom: -12px;

@@ -21,7 +21,7 @@ import publicadores.DtUsuario;
 import publicadores.ControladorPublish;
 import publicadores.ControladorPublishService;
 import publicadores.ControladorPublishServiceLocator;
-import publicadores.DtInstitucionD;
+
 
 
 /**
@@ -57,7 +57,6 @@ public class ConsultaListadoUsuario extends HttpServlet {
 
  		if(use instanceof DtProfesor) {
 
-			 //DtProfesor p =(DtProfesor)use;
 			 try {
 				ArrayList<publicadores.DtActDeportiva> actD = (ArrayList<publicadores.DtActDeportiva>) listarDatoActdepP((publicadores.DtProfesor)use);
 				request.setAttribute("actD", actD);
@@ -87,28 +86,15 @@ public class ConsultaListadoUsuario extends HttpServlet {
 	
 	public ArrayList<publicadores.DtActDeportiva> listarDatoActdepP(publicadores.DtProfesor profe) throws Exception{
 		ControladorPublishService cps = new ControladorPublishServiceLocator();
-		ControladorPublish port = null;
-
-		port = cps.getControladorPublishPort();
-		
-		System.out.println("ANTES DE  CARGAR dtActividades...");
-		
-		publicadores.DtActDeportiva[] dtActividades = port.listarDatoActdepP(profe); //ERROR
-		System.out.println("cargo dtActividades con:"+dtActividades);
-		
-		ArrayList<publicadores.DtActDeportiva> lstActividades  = new ArrayList<>();
-		for (int i = 0; i < dtActividades.length; ++i) {
-			System.out.println("ENTRO AL FOR");
-			
-			lstActividades.add(dtActividades [i]);
-			
-			System.out.println("despues del .add");
+		ControladorPublish port = cps.getControladorPublishPort();
+		System.out.println("ANTES DE ACT...");
+		publicadores.DtActDeportiva[] act= port.listarDatoActdepP(profe); //ERROR
+		ArrayList<publicadores.DtActDeportiva> lstAct= new ArrayList<>(); 
+		for (int i = 0; i < act.length; ++i) {
+		    lstAct.add(act[i]);
 		}
-		return lstActividades;
+		return lstAct;
 	}
-	
-
-	
 	public ArrayList<publicadores.DtClase> listarDatoClasedeP(publicadores.DtProfesor profe) throws Exception {
 		ControladorPublishService cps = new ControladorPublishServiceLocator();
 		ControladorPublish port = cps.getControladorPublishPort();
