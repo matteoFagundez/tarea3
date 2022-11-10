@@ -3,12 +3,6 @@
     padding: 0;
 }
 
-.container {
-
-    background-image: linear-gradient(rgba(5, 10, 5, 0.80), rgba(90, 40, 90, 0.80)), url(./bg-image.jpg);
-    background-size: cover;
-
-}
 .navbar {
     width: 95%;
     margin: auto;

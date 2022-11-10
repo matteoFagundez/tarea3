@@ -2,7 +2,8 @@
  <%@page import="publicadores.DtProfesor"%>
  <%@page import="publicadores.DtSocio"%>
  <%@page import="publicadores.DtClase"%> 
- <%@page import="publicadores.DtActDeportiva"%> 
+ <%@page import="publicadores.DtActDeportiva"%>
+ <%@page import="publicadores.DtInstitucionD"%>
  <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
  <%@page import="java.io.ByteArrayInputStream"%>
  <%@page import="java.io.IOException"%>
@@ -87,7 +88,7 @@
 			<li class="nav-item"><a class="nav-link" data-toggle="dropdown" href="#">Consultas</a>
 		        <ul class="dropdown-menu">
 					<li class="nav-item"><a class="nav-link" href="consultaUsuario.jsp">Consulta usuario</a></li>
-					<li class="nav-item"><a class="nav-link" href="Working.jsp">Consulta actividad deportiva</a></li>
+					<li class="nav-item"><a class="nav-link" href="consultaActividadD.jsp">Consulta actividad deportiva</a></li>
 				</ul>
      		</li>
      		
