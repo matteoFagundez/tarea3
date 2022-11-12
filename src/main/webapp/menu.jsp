@@ -22,7 +22,7 @@
 
 <link rel="stylesheet" href="css/styleMenu.css"> 	<!-- css para la barra de MENU-->
 
-<title>Homepage</title>
+
 
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -66,7 +66,7 @@
 			<li class="nav-item"><a class="nav-link" data-toggle="dropdown" href="#">Clases</a>
 		        <ul class="dropdown-menu">
 					<li class="nav-item"><a class="nav-link" href="altaClase.jsp">Alta dictado clase</a></li>
-					<li class="nav-item"><a class="nav-link" href="Working.jsp">Consulta dictado clase</a></li>
+					<li class="nav-item"><a class="nav-link" href="consultadeDictadodeC.jsp">Consulta dictado clase</a></li>
 				</ul>
      		</li>				
 			<li class="nav-item"><a class="nav-link" data-toggle="dropdown" href="#">Ranking</a>
@@ -80,7 +80,7 @@
 			<%if(use instanceof DtSocio){//menus de socio %>
 			<li class="nav-item"><a class="nav-link" data-toggle="dropdown" href="#">Clases</a>
 	        	<ul class="dropdown-menu">
-		         	<li class="nav-item"><a class="nav-link" href="Working.jsp">Registro a dictado clase</a></li>
+		         	<li class="nav-item"><a class="nav-link" href="RegistroClase.jsp">Registro a dictado clase</a></li>
 					<li class="nav-item"><a class="nav-link" href="Working.jsp">Eliminar registro a dictado clase</a></li>
 	        	</ul>
      		</li>
