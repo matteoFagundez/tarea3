@@ -102,7 +102,7 @@ public class ConsultaDictC extends HttpServlet {
 		        request.setAttribute("FechaR", f);
 		        request.setAttribute("Datos", "OK");
 		        request.setAttribute("Titulo", "Datos de Clase Seleccionada:");
-		        if(ca.getUrlI()==null||ca.getUrlI()==""){
+		        if(ca.getUrlI()==null||ca.getUrlI().equals("")){
 		        	request.setAttribute("Imagen", "imagenes/nohayI.webp");
 		        }else {
 		        	String u=ca.getUrlI();

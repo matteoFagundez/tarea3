@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -108,7 +109,7 @@ public class ConsultaUser extends HttpServlet {
 	 		        request.setAttribute("FechaR", f);
 	 		        request.setAttribute("Datos", "OK");
 	 		        request.setAttribute("Titulo", "Datos de Clase Seleccionada:");
-	 		        if(ca.getUrlI()==null||ca.getUrlI()==""){
+	 		        if(ca.getUrlI()==null||ca.getUrlI().equals("")){
 	 		        	request.setAttribute("Imagen", "imagenes/nohayI.webp");
 	 		        }else {
 	 		        	String u=ca.getUrlI();
@@ -141,7 +142,7 @@ public class ConsultaUser extends HttpServlet {
  		        request.setAttribute("FechaR", f);
  		        request.setAttribute("Datos", "OK");
  		        request.setAttribute("Titulo", "Datos de Actividad Seleccionada:");
- 		        if(a.getUrlI()==null||a.getUrlI()==""){
+ 		        if(a.getUrlI()==null||a.getUrlI().equals("")){
  		        	request.setAttribute("Imagen", "imagenes/nohayI.webp");
  		        }else {
  		        	String u=a.getUrlI();
@@ -168,6 +169,10 @@ public class ConsultaUser extends HttpServlet {
 		for (int i = 0; i < act.length; ++i) {
 		    lstAct.add(act[i]);
 		}
+		HashSet<DtActDeportiva> hs = new HashSet<DtActDeportiva>();
+		hs.addAll(lstAct);
+		lstAct.clear();
+		lstAct.addAll(hs);
 		return lstAct;
 	}
 	public ArrayList<publicadores.DtClase> listarDatoClasedeP(publicadores.DtProfesor profe) throws Exception {
@@ -189,6 +194,7 @@ public class ConsultaUser extends HttpServlet {
 		for (int i = 0; i < dtClases.length; ++i) {
 			lstClase .add(dtClases [i]);
 		}
+		
 		return lstClase;
 	}
 	

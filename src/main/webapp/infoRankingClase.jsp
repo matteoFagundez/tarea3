@@ -114,7 +114,7 @@
 					                <td data-label="POSICION"> <%=i%></td>
 					                <td data-label="NOMBRE"> <%=dtc.getNombre()%></td>
 					                <td data-label="URL"> <%=dtc.getUrl()%></td>
-					                <td data-label="FECHA"><%=dtc.getFecha().getTime()%></td>
+					                <td data-label="FECHA"><%=dtc.getFecha().getTime().getDate()%></td>
 					                
 					              </tr>
 					              

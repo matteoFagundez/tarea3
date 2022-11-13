@@ -54,13 +54,20 @@ public class AgregarClase extends HttpServlet {
         	Calendar fechaSis = formatoCalendar(fechaSisString); // La convierte en Calendar
            
         	// Date fech =new Date();
-            String horaString = request.getParameter("fecha"); //Toma la fecha como String del formulario
-        	Calendar hora =  formatoCalendar(horaString); // La convierte en Calendar
+            String horaString = request.getParameter("hora"); //Toma la fecha como String del formulario
+          
             
-            
+            Calendar hora =  formatoCalendarHora(horaString); // La convierte en Calendar
+        	 System.out.println("Hora 1: " +hora);
+        	
+        	
+           	
             System.out.println("hola "+institucion+" "+profe+" "+actividad+" "+nombre+" "+url+" "+fechaSis+" "+fecha+" "+hora);
             publicadores.DtClase dtClase= new DtClase(nombre, fecha, hora, url,fechaSis,Url, null, null, null, null);
             altaClase(dtClase,institucion,actividad,profe);
+            
+            System.out.println("Mando la hora ... " +(hora));
+            
             request.setAttribute("Titulo", "Se agrego con Exito");
 			request.setAttribute("Tipo", "success");
 			request.setAttribute("Imagen", "imagenes/homerE.webp");
@@ -92,6 +99,26 @@ public class AgregarClase extends HttpServlet {
 
       return cal;
     }
+    public static Calendar formatoCalendarHora(String DateHum){
+    	String horaEntrada = DateHum;
+    	System.out.println("Hora de entrada " +horaEntrada);
+        String[] fecVctHora = DateHum.split(":"); //Para tomar la hora
+        int hora = Integer.parseInt(fecVctHora[0]);
+        int minutos = Integer.parseInt(fecVctHora[1]);
+        Calendar cal;
+        cal = Calendar.getInstance();
+        cal.clear();
+        String horaCompleta = "Hora de inicio " + hora + ":" +minutos;
+        System.out.println("Hora completa: "+horaCompleta);
+        int anyo =  1;
+        int mes =  1;
+        int dia =  1;
+        
+        cal.set( anyo, mes, dia, hora, minutos);
+       // cal.set(hora,minutos);
+
+        return cal;
+      }
     
   //FORMAR FECHA DEL SISTEMA GREGORIANCALENDAR
     public static String fechaActual(){

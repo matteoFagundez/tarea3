@@ -80,7 +80,7 @@
 	  
 			<div align="center" class="div-dataUser" style="background-color:#33475b">
   				<h2 class="font-weight-bold mb-3">  Datos </h2>
-				<img class="avatar" src=<%if(use.getUrl()==null || use.getUrl()=="") {%>            
+				<img class="avatar" src=<%if(use.getUrl()==null || use.getUrl().equals("")) {%>            
 										            		"imagenes\user.png"  
 											            <%}else{%>
 											            	"<%=use.getUrl()%>"	
@@ -139,7 +139,7 @@
 		                <td data-label="Nickname"><%=s.getNickname()%></td>
 		                <td data-label="Nombre"><%=s.getNombre()%></td>
 		                <td data-label="Apellido"> <%=s.getApellido()%></td>
-		                <td data-label="Nacimiento">error</td>
+		                <td data-label="Nacimiento"><%=s.getFechaNac().getTime().getDate()%>/<%=(s.getFechaNac().getTime().getMonth()+1)%>/<%=(s.getFechaNac().getTime().getYear()+1900)%></td>
 		                <td data-label="Email"><%=s.getEmail()%></td>
 		                <td data-label="Rol">Socio</td>
 		              </tr>
@@ -307,7 +307,7 @@
 					</form>
 	                <%} else{%>
 	                <form action="ConsultaUser" method="post">    
-				          <button class="btn btn-primary width-100">Ver  Actividades</button>		        
+				          <button class="btn btn-primary width-100">Ver  Clases</button>		        
 					</form>
 	                <%} %>
 			<%} %>

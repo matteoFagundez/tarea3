@@ -97,7 +97,7 @@
         	<li class="nav-item"><a class="nav-link" href="Outsesion.jsp">Cerrar Sesion</a></li>
         </ul>
         <ul>
-         <%if(use.getUrl()==null || use.getUrl()=="") {%>            
+         <%if(use.getUrl()==null || use.getUrl().equals("")) {%>            
             	<img class="avatar"src="imagenes/user.png"/>
             
             <%}else{%>

@@ -37,7 +37,7 @@
 
 		<link rel="stylesheet" href="css/styleMenu.css"> 	<!-- css para la barra de MENU-->
 		
-		
+		 <link rel="stylesheet" href="css/styleResponsive.css">
         <link rel="stylesheet" href="css/consultaUsuario.css"> <!-- css para CUERPO CENTRAL-->
         <link rel="stylesheet" href="css/MovimientoI.css"> <!-- css para CUERPO CENTRAL-->
          <link rel="stylesheet" type="text/css" href="css/table-responsive.css">  <!-- css para TBLA RESPONSIVE-->
@@ -88,7 +88,7 @@
 	        <%
 	    	ArrayList<DtInstitucionD> inst= (ArrayList<DtInstitucionD>)session.getAttribute("LIntitucines");
 	    	%>  
-       		<div class="container align-self-center p-6">
+       		<div align="center" class="div-dataUser" style="background-color:#33475b">
                     <h1 class="font-weight-bold mb-3"> Registro de Socio a una Clase</h1>
                       <%if(request.getAttribute("MostrarDClase")!="OK"){%>
                       
@@ -174,8 +174,8 @@
 								<div class="titles-info" id="titles-info"> 
 			                    <FONT COLOR="white">
 						        <p> 
-								<img class="imagen" src=<%if(Dc.getUrlI()==null || Dc.getUrlI()=="") {%>            
-										            		"imagenes\user.png"  
+								<img class="imagen" src=<%if(Dc.getUrlI()==null || Dc.getUrlI().equals("")) {%>            
+										            		"imagenes\nohayI.webp"  
 											            <%}else{%>
 											            	"<%=Dc.getUrlI()%>"	
 											            <%}%>
