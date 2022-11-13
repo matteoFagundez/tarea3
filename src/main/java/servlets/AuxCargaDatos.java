@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import publicadores.ControladorPublish;
 import publicadores.ControladorPublishService;
 import publicadores.ControladorPublishServiceLocator;
+import publicadores.DtClase;
 
 
 
@@ -47,11 +48,12 @@ public class AuxCargaDatos extends HttpServlet {
 
         String institucion = request.getParameter("institucion");
         try {
-        	System.out.println("hola "+institucion+" "+nombre+" "+url+" ");	 
-        	String[] act=listarActividades(institucion);
-			try {
+        	RequestDispatcher rd;
+        	if(buscarclase(nombre).getNombre().equals("NULL1")) {
+	        	System.out.println("hola "+institucion+" "+nombre+" "+url+" ");	 
+	        	String[] act=listarActividades(institucion);
 				String[] Prof=listarProfesoresInt(institucion);
-				RequestDispatcher rd;
+				
 	            request.setAttribute("Institucion", institucion);
 	            request.setAttribute("Actdep", act);
 	            request.setAttribute("Profes", Prof);
@@ -60,10 +62,16 @@ public class AuxCargaDatos extends HttpServlet {
 	            System.out.println("hola "+institucion+" "+nombre+" "+url+" ");	        	
 	            rd = request.getRequestDispatcher("/conAltaClase.jsp");
 	            rd.forward(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        	}
+        	else {
+        		request.setAttribute("Titulo", "Usted ya esta Reguistrado");
+				request.setAttribute("Tipo", "error");
+				request.setAttribute("Imagen", "imagenes/explosion.gif");
+        		request.setAttribute("Exito", "OK");
+        		rd = request.getRequestDispatcher("/altaClase.jsp");
+	            rd.forward(request, response);
+	            
+        	}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -82,4 +90,10 @@ public class AuxCargaDatos extends HttpServlet {
 		ControladorPublish port = cps.getControladorPublishPort();
 		return port.listarProfesoresInt(institucion);
 	}
+	
+	public DtClase buscarclase(String nombre) throws Exception {
+		ControladorPublishService cps = new ControladorPublishServiceLocator();
+		ControladorPublish port = cps.getControladorPublishPort();
+		return port.buscarclase(nombre);
+	} 
 }

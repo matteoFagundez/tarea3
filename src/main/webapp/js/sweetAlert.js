@@ -7,7 +7,8 @@ Swal.fire({
 	backdrop: true,
 	timer: 15000,
 	timerProgressBar: true,
-	
+	imageUrl: 'imagenes/login.gif',
+    imageWidth: '400px',
 	// confirmButtonText:
 	// footer:
 	// width:
@@ -36,7 +37,7 @@ Swal.fire({
 	// 	title:
 	// 	closeButton:
 	// 	icon:
-	// 	image:
+	 	
 	// 	content:
 	// 	input:
 	// 	actions:

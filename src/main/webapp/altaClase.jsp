@@ -37,6 +37,28 @@
 		 <link rel="stylesheet" href="css/styleMenu.css"> 	<!-- css para la barra de MENU-->		
          <link rel="stylesheet" href="css/altaClase.css"> <!-- css para CUERPO CENTRAL RESPONISVE-->
 	 <%@ include file="menu.jsp" %>
+	 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+        function validacion(){
+            var formvalido = true;
+
+
+            <%String n,d,du,c2,f,i,t;n=(String) request.getAttribute("Clase");d=(String) request.getAttribute("Fecha");
+            du=(String) request.getAttribute("HoraI");c2=(String) request.getAttribute("Url");f=(String) request.getAttribute("FechaR");
+            i=(String) request.getAttribute("Imagen");t=(String)request.getAttribute("Titulo");%>
+            Swal.fire({
+            	title: '<%=t%>',
+            	html:' <b><%=n%></b><br><b><%=d%></b><br><b><%=du%></b><br><b><%=c2%></b><br><b><%=f%></b>',
+            	icon:'info',
+            	backdrop: true,
+            	imageUrl: '<%=i%>',
+            	imageWidth: '400px',
+            });
+
+            return formvalido;
+
+        }
+    </script>
     </head>
     <body>
      <%
@@ -58,8 +80,10 @@
 		crossorigin="anonymous"></script>
 
      <%if(request.getAttribute("Exito")=="OK"){ %>
-	    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	    <script src="js/Exito.js"></script>
+	    <script>  
+             	validacion();   
+             </script>
+
     <%}%>
    
      <div class="div-form"> <!-- Contenedor responsive -> ver codigo css en css/mosficarUsuario.css -->

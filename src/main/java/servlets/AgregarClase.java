@@ -41,11 +41,7 @@ public class AgregarClase extends HttpServlet {
         String profe = request.getParameter("Profesor");
         String actividad = (String)request.getParameter("Actividad");
         // open image
-        File imagen = new File(request.getParameter("foto"));
         String Url ="imagenes/"+request.getParameter("foto");
-        //BufferedImage bufferedImage = ImageIO.read(imagen);
-        byte[] buffer = new byte[(int) imagen.length()];
-         //get DataBufferBytes from Raster
     
   
 
@@ -63,10 +59,11 @@ public class AgregarClase extends HttpServlet {
             
             
             System.out.println("hola "+institucion+" "+profe+" "+actividad+" "+nombre+" "+url+" "+fechaSis+" "+fecha+" "+hora);
-            publicadores.DtClase dtClase= new DtClase(nombre, fecha, hora, url,fechaSis,Url, buffer, null, null, null);
+            publicadores.DtClase dtClase= new DtClase(nombre, fecha, hora, url,fechaSis,Url, null, null, null, null);
             altaClase(dtClase,institucion,actividad,profe);
-            request.setAttribute("mensaje ", "Se ha ingresado correctamente la clase " + nombre + " en el sistema.");
-            System.out.println("Paso el test\n");
+            request.setAttribute("Titulo", "Se agrego con Exito");
+			request.setAttribute("Tipo", "success");
+			request.setAttribute("Imagen", "imagenes/homerE.webp");
             RequestDispatcher rd;
             request.setAttribute("Exito", "OK");
         	rd = request.getRequestDispatcher("/altaClase.jsp");

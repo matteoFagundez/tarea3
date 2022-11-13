@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,12 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.rpc.ServiceException;
 
 import publicadores.DtActDeportiva;
 import publicadores.DtClase;
 import publicadores.DtProfesor;
 import publicadores.DtSocio;
 import publicadores.DtUsuario;
+import publicadores.ExisteRegistroAClase;
 import publicadores.ControladorPublish;
 import publicadores.ControladorPublishService;
 import publicadores.ControladorPublishServiceLocator;
@@ -108,29 +112,53 @@ public class RegistroClase extends HttpServlet {
 				String nomC = request.getParameter("prodIdC");
 				HttpSession sesion = request.getSession();
 				DtUsuario use= (DtUsuario)sesion.getAttribute("usuario");
+				System.out.println(use.getNickname()+" "+nomC);
+				
+				Boolean reg;
 				try {
-					registroDictadoClases(nomC, actividad, institucion, use.getNickname());
-					request.setAttribute("Titulo", "Se agrego con Exito");
-					request.setAttribute("Tipo", "success");
-					request.setAttribute("Imagen", "imagenes/exito.gif");
-				} catch (Exception e) {
-					request.setAttribute("Titulo", "Usted ya esta Reguistrado");
-					request.setAttribute("Tipo", "error");
-					request.setAttribute("Imagen", "imagenes/exito.gif");
-					e.printStackTrace();
+					reg = existeRegistro(use.getNickname(),nomC);
+					if(!reg) {
+						try {
+						registroDictadoClases(nomC, actividad, institucion, use.getNickname());
+						request.setAttribute("Titulo", "Se agrego con Exito");
+						request.setAttribute("Tipo", "success");
+						request.setAttribute("Imagen", "imagenes/exito.gif");
+						} catch (ExisteRegistroAClase  e) {
+							
+							e.printStackTrace();
+						}
+					}
+					else {
+						request.setAttribute("Titulo", "Usted ya esta Reguistrado");
+						request.setAttribute("Tipo", "error");
+						request.setAttribute("Imagen", "imagenes/ocultar.gif");
+					}
+				} catch (Exception e1) {
+					 //TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
+				
 				request.setAttribute("Datos", "OK");
+				System.out.println(use.getNickname()+" "+nomC);
 			}
+			
 			rd = request.getRequestDispatcher("/RegistroClase.jsp");
 			
 			rd.forward(request, response);
 
         doGet(request, response);
 	}
-	public void registroDictadoClases(String nomC, String actividad,String institucion, String nombreU) throws Exception {
+	public void registroDictadoClases(String nomC, String actividad,String institucion, String nombreU) throws ExisteRegistroAClase {
 		ControladorPublishService cps = new ControladorPublishServiceLocator();
-		ControladorPublish port = cps.getControladorPublishPort();
-		port.registroDictadoClases(nomC, actividad, institucion, nombreU);
+		ControladorPublish port;
+		try {
+			port = cps.getControladorPublishPort();
+			port.registroDictadoClases(nomC, actividad, institucion, nombreU);
+		} catch (ServiceException | RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	public String[] listarClase(String institucion, String actividadDep) throws Exception {
 		ControladorPublishService cps = new ControladorPublishServiceLocator();
@@ -155,5 +183,13 @@ public class RegistroClase extends HttpServlet {
 		ControladorPublishService cps = new ControladorPublishServiceLocator();
 		ControladorPublish port = cps.getControladorPublishPort();
 		return port.buscaractividad(nombre);
+	}
+	
+	public Boolean existeRegistro(String nombre,String clase) throws Exception{
+		ControladorPublishService cps = new ControladorPublishServiceLocator();
+		ControladorPublish port = cps.getControladorPublishPort();
+		return port.existeRegistro(nombre, clase);
+
+		
 	}
 }
