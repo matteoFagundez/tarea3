@@ -1,4 +1,4 @@
-# tarea3 - Tercera Iteración
+# tarea3_WS_Client - Tercera Iteración
 La presente tarea pretende la puesta en práctica y profundización de los siguientes puntos:
   ● Lograr la interoperabilidad de aplicaciones distribuidas vía Web Services.
   ● Diseño Responsive.
